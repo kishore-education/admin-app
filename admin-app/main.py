@@ -127,3 +127,12 @@ document.addEventListener("DOMContentLoaded", function(event){
 </script>
 '''
 components.html(html_string)
+#----------------------Hide Streamlit footer----------------------------
+hide_st_style = """
+
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+"""
+st.markdown(hide_st_style, unsafe_allow_html=True)
