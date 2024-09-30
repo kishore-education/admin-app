@@ -1,6 +1,7 @@
 import sqlitecloud
 import logging
 import streamlit as st
+import streamlit.components.v1 as components
 
 # Initialize logging
 logging.basicConfig(level=logging.DEBUG)
@@ -107,12 +108,13 @@ with st.form(key='delete_product_form'):
     if delete_button:
         delete_product(delete_product_id)
 
-# Hide Streamlit style
-hide_streamlit_style = """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    .viewerBadge_link__1S137 {visibility: hidden;}
-    </style>
+# Inject custom JavaScript to hide the Streamlit badge
+hide_streamlit_badge = """
+    <script>
+    const badge = document.querySelector('._viewerBadge_nim44_23');
+    if (badge) {
+        badge.style.display = 'none';
+    }
+    </script>
     """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+components.html(hide_streamlit_badge)
