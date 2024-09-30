@@ -1,6 +1,6 @@
 import sqlitecloud
-import streamlit as st
 import logging
+import streamlit as st
 
 # Initialize logging
 logging.basicConfig(level=logging.DEBUG)
@@ -106,4 +106,12 @@ with st.form(key='delete_product_form'):
     delete_button = st.form_submit_button(label='Delete Product')
     if delete_button:
         delete_product(delete_product_id)
-        #kk
+
+# Hide Streamlit style
+hide_streamlit_style = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    </style>
+    """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
