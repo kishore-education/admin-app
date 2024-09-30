@@ -160,4 +160,5 @@ remove_badge_classes = """
     </script>
     """
 components.html(remove_badge_classes, unsafe_allow_html=True)
+#
 
