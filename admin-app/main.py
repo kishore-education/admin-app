@@ -110,11 +110,8 @@ with st.form(key='delete_product_form'):
 
 # Inject custom JavaScript to hide the Streamlit badge
 hide_streamlit_badge = """
-    <script>
-    const badge = document.querySelector('._viewerBadge_nim44_23');
-    if (badge) {
-        badge.style.display = 'none';
-    }
-    </script>
+    <style>
+    .viewerBadge_container__1QSob { display: none; }
+    </style>
     """
 components.html(hide_streamlit_badge)
