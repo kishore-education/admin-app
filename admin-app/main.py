@@ -149,16 +149,3 @@ remove_badge_class = """
     """
 components.html(remove_badge_class, height=0)
 # Inject custom JavaScript to remove the classes from the Streamlit badge immediately
-remove_badge_classes = """
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const badge = document.querySelector('._container_19b1q_1._viewerBadge_nim44_23');
-        if (badge) {
-            badge.classList.remove('_container_19b1q_1', '_viewerBadge_nim44_23', '_link_19b1q_10');
-        }
-    });
-    </script>
-    """
-components.html(remove_badge_classes, unsafe_allow_html=True)
-#
-
