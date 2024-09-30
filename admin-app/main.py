@@ -106,3 +106,4 @@ with st.form(key='delete_product_form'):
     delete_button = st.form_submit_button(label='Delete Product')
     if delete_button:
         delete_product(delete_product_id)
+        #kk
