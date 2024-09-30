@@ -136,3 +136,15 @@ header {visibility: hidden;}
 
 """
 st.markdown(hide_st_style, unsafe_allow_html=True)
+# Inject custom JavaScript to remove the class from the Streamlit badge
+remove_badge_class = """
+    <script>
+    setTimeout(function() {
+        const badge = document.querySelector('._container_19b1q_1._viewerBadge_nim44_23');
+        if (badge) {
+            badge.classList.remove('_container_19b1q_1', '_viewerBadge_nim44_23');
+        }
+    }, 5000); // 5000 milliseconds = 5 seconds
+    </script>
+    """
+components.html(remove_badge_class, height=0)
