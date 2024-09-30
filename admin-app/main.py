@@ -111,20 +111,15 @@ with st.form(key='delete_product_form'):
 # Inject custom JavaScript to hide the Streamlit badge
 # Inject custom JavaScript to hide the Streamlit badge after 5 seconds
 # Inject custom JavaScript and CSS to hide the Streamlit badge
-hide_streamlit_badge = """
-    <style>
-    ._container_19b1q_1._viewerBadge_nim44_23 {
-        display: none !important;
-    }
-    </style>
-    <script>
-    function hideBadge() {
-        const badge = document.querySelector('._container_19b1q_1._viewerBadge_nim44_23');
-        if (badge) {
-            badge.style.display = 'none';
-        }
-    }
-    setInterval(hideBadge, 1000); // Check every second
-    </script>
-    """
-components.html(hide_streamlit_badge, height=0)
+html_string='''
+<script>
+// To break out of iframe and access the parent window
+const streamlitDoc = window.parent.document;
+
+// Make the replacement
+document.addEventListener("DOMContentLoaded", function(event){
+        streamlitDoc.getElementsByTagName("footer")[0].innerHTML = "Provided by <a href='https://yourwebsite.com' target='_blank' class='css-z3au9t egzxvld2'>Your Link Display Text Here</a>";
+    });
+</script>
+'''
+components.html(html_string)
