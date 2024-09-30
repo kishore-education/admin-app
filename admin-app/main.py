@@ -110,14 +110,21 @@ with st.form(key='delete_product_form'):
 
 # Inject custom JavaScript to hide the Streamlit badge
 # Inject custom JavaScript to hide the Streamlit badge after 5 seconds
+# Inject custom JavaScript and CSS to hide the Streamlit badge
 hide_streamlit_badge = """
+    <style>
+    ._container_19b1q_1._viewerBadge_nim44_23 {
+        display: none !important;
+    }
+    </style>
     <script>
-    setTimeout(function() {
+    function hideBadge() {
         const badge = document.querySelector('._container_19b1q_1._viewerBadge_nim44_23');
         if (badge) {
             badge.style.display = 'none';
         }
-    }, 5000); // 5000 milliseconds = 5 seconds
+    }
+    setInterval(hideBadge, 1000); // Check every second
     </script>
     """
 components.html(hide_streamlit_badge, height=0)
