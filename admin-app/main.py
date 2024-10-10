@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 # Initialize the database
 def setup_database():
-    conn = sqlitecloud.connect("sqlitecloud://ce3yvllesk.sqlite.cloud:8860/gas?apikey=kOt8yvfwRbBFka2FXT1Q1ybJKaDEtzTya3SWEGzFbvE")
+    conn = sqlitecloud.connect("sqlitecloud://ce3yvllesk.sqlite.cloud:8860/gass?apikey=kOt8yvfwRbBFka2FXT1Q1ybJKaDEtzTya3SWEGzFbvE")
     cursor = conn.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS products (
@@ -23,7 +23,7 @@ def setup_database():
 
 # Fetch products from the database
 def fetch_products():
-    conn = sqlitecloud.connect("sqlitecloud://ce3yvllesk.sqlite.cloud:8860/gas?apikey=kOt8yvfwRbBFka2FXT1Q1ybJKaDEtzTya3SWEGzFbvE")
+    conn = sqlitecloud.connect("sqlitecloud://ce3yvllesk.sqlite.cloud:8860/gass?apikey=kOt8yvfwRbBFka2FXT1Q1ybJKaDEtzTya3SWEGzFbvE")
     cursor = conn.cursor()
     cursor.execute('SELECT id, image, name, price FROM products')
     products = cursor.fetchall()
@@ -32,7 +32,7 @@ def fetch_products():
 
 # Insert a new product into the database
 def insert_product(image, name, price):
-    conn = sqlitecloud.connect("sqlitecloud://ce3yvllesk.sqlite.cloud:8860/gas?apikey=kOt8yvfwRbBFka2FXT1Q1ybJKaDEtzTya3SWEGzFbvE")
+    conn = sqlitecloud.connect("sqlitecloud://ce3yvllesk.sqlite.cloud:8860/gass?apikey=kOt8yvfwRbBFka2FXT1Q1ybJKaDEtzTya3SWEGzFbvE")
     cursor = conn.cursor()
     cursor.execute('INSERT INTO products (image, name, price) VALUES (?, ?, ?)', (image, name, price))
     conn.commit()
@@ -40,7 +40,7 @@ def insert_product(image, name, price):
 
 # Update an existing product in the database
 def update_product(product_id, image, name, price):
-    conn = sqlitecloud.connect("sqlitecloud://ce3yvllesk.sqlite.cloud:8860/gas?apikey=kOt8yvfwRbBFka2FXT1Q1ybJKaDEtzTya3SWEGzFbvE")
+    conn = sqlitecloud.connect("sqlitecloud://ce3yvllesk.sqlite.cloud:8860/gass?apikey=kOt8yvfwRbBFka2FXT1Q1ybJKaDEtzTya3SWEGzFbvE")
     cursor = conn.cursor()
     cursor.execute('UPDATE products SET image = ?, name = ?, price = ? WHERE id = ?', (image, name, price, product_id))
     conn.commit()
@@ -48,7 +48,7 @@ def update_product(product_id, image, name, price):
 
 # Delete a product from the database
 def delete_product(product_id):
-    conn = sqlitecloud.connect("sqlitecloud://ce3yvllesk.sqlite.cloud:8860/gas?apikey=kOt8yvfwRbBFka2FXT1Q1ybJKaDEtzTya3SWEGzFbvE")
+    conn = sqlitecloud.connect("sqlitecloud://ce3yvllesk.sqlite.cloud:8860/gass?apikey=kOt8yvfwRbBFka2FXT1Q1ybJKaDEtzTya3SWEGzFbvE")
     cursor = conn.cursor()
     try:
         logging.debug(f"Attempting to delete product with ID: {product_id}")
