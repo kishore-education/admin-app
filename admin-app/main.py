@@ -46,6 +46,14 @@ def update_product(product_id, image, name, price):
     conn.commit()
     conn.close()
 
+# Update an existing product's price in the database
+def update_product_price(product_id, price):
+    conn = sqlitecloud.connect("sqlitecloud://ce3yvllesk.sqlite.cloud:8860/gass?apikey=kOt8yvfwRbBFka2FXT1Q1ybJKaDEtzTya3SWEGzFbvE")
+    cursor = conn.cursor()
+    cursor.execute('UPDATE products SET price = ? WHERE id = ?', (price, product_id))
+    conn.commit()
+    conn.close()
+
 # Delete a product from the database
 def delete_product(product_id):
     conn = sqlitecloud.connect("sqlitecloud://ce3yvllesk.sqlite.cloud:8860/gass?apikey=kOt8yvfwRbBFka2FXT1Q1ybJKaDEtzTya3SWEGzFbvE")
@@ -88,17 +96,15 @@ with st.form(key='add_product_form'):
         insert_product(image, name, price)
         st.success("Product added successfully!")
 
-# Update an existing product
-st.header("Update a Product")
-with st.form(key='update_product_form'):
+# Update an existing product's price
+st.header("Update Product Price")
+with st.form(key='update_product_price_form'):
     product_id = st.number_input("Product ID", min_value=1, step=1)
-    new_image = st.text_input("New Image URL")
-    new_name = st.text_input("New Product Name")
     new_price = st.text_input("New Price")
-    update_button = st.form_submit_button(label='Update Product')
+    update_button = st.form_submit_button(label='Update Price')
     if update_button:
-        update_product(product_id, new_image, new_name, new_price)
-        st.success("Product updated successfully!")
+        update_product_price(product_id, new_price)
+        st.success("Product price updated successfully!")
 
 # Delete a product
 st.header("Delete a Product")
@@ -116,6 +122,7 @@ hide_streamlit_style = """
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 html_string='''
+
 <script>
 // To break out of iframe and access the parent window
 const streamlitDoc = window.parent.document;
